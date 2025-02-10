@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser; // Tambahkan ini
+use Filament\Panel; // Tambahkan ini
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser // Implementasikan FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -50,5 +51,13 @@ class User extends Authenticatable
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+
+    /**
+     * Menentukan apakah pengguna dapat mengakses Filament Admin Panel.
+     */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->usertype === 'admin'; // Hanya user dengan usertype 'admin' yang bisa mengakses /admin
     }
 }
