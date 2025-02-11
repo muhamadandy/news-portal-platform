@@ -39,11 +39,7 @@ class ArticleResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->label('Gambar')
                     ->image()
-                    ->nullable()
-                    ->saveUploadedFileUsing(function ($file) {
-                        $supabase = new SupabaseStorage();
-                        return $supabase->uploadImage($file, 'posts');
-                    }),
+                    ->nullable(),
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug')
                     ->disabled(),
