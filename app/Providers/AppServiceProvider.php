@@ -26,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        if (!Storage::exists('public/storage')) {
-            Artisan::call('storage:link');
-        }
+        // if (!Storage::exists('public/storage')) {
+        //     Artisan::call('storage:link');
+        // }
     }
 }
