@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
-
+use Illuminate\Support\Facades\Artisan;
 
 Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('/articles/{article}', [HomeController::class, 'show'])->name('articles.show');
@@ -26,4 +26,8 @@ Route::middleware('auth')->group(function (){
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::post('/comments/{comment}/report', [CommentController::class, 'report'])->name('comments.report');
     Route::post('/comments/reply', [CommentController::class, 'reply'])->name('comments.reply');
+});
+
+Route::get('/symlink', function () {
+    Artisan::call('storage:link');
 });
