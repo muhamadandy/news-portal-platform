@@ -40,7 +40,8 @@ class ArticleResource extends Resource
     ->disk('cloudinary') // Simpan ke Cloudinary
     ->directory('uploads') // Folder di Cloudinary
     ->visibility('public') // Public agar bisa diakses
-    ->nullable(),
+    ->nullable()
+    ->extraAttributes(['_token' => csrf_token()]),
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug')
                     ->disabled(),
