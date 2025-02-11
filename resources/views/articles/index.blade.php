@@ -9,7 +9,8 @@
                                 <div class="swiper-slide">
                                     <div class="relative bg-gray-100 rounded-lg shadow-md overflow-hidden">
                                         <a href="{{ route('articles.show', $highlight->slug) }}">
-                                            <img src="{{ asset('storage/' . $highlight->image) }}" alt="{{ $highlight->title }}" class="w-full h-64 object-cover">
+                                            <img src="{{ $highlight->image }}" alt="{{ $highlight->title }}" class="w-full h-64 object-cover">
+
                                             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-end p-6">
                                                 <div class="md:max-w-[50%]">
                                                     <h2 class="text-2xl font-bold text-white mb-2">{{ $highlight->title }}</h2>
@@ -64,7 +65,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 @foreach ($articles as $article)
                     <a href="{{ route('articles.show', $article->slug) }}" class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                        <img src="{{ asset('storage/' . $article->image) }}" alt="Image for {{ $article->title }}" class="w-full h-48 object-cover">
+                        <img src="{{ $article->image }}" alt="Image for {{ $article->title }}" class="w-full h-48 object-cover">
+
                         <div class="p-6">
                             <h2 class="text-2xl font-semibold text-gray-800 mb-2">{{ $article->title }}</h2>
                             <span class="text-sm text-white font-semibold bg-yellow-500 p-1 rounded-md">{{ $article->category->name }}</span>

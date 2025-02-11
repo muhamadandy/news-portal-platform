@@ -36,9 +36,11 @@ class ArticleResource extends Resource
                     ->label('Konten')
                     ->required(),
                 Forms\Components\FileUpload::make('image')
-                    ->label('Gambar')
-                    ->image()
-                    ->nullable(),
+                ->label('Gambar')
+    ->disk('cloudinary') // Simpan ke Cloudinary
+    ->directory('uploads') // Folder di Cloudinary
+    ->visibility('public') // Public agar bisa diakses
+    ->nullable(),
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug')
                     ->disabled(),
