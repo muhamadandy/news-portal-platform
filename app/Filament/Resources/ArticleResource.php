@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ArticleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ArticleResource\RelationManagers;
+use App\Services\SupabaseStorage;
 
 class ArticleResource extends Resource
 {
@@ -37,10 +38,12 @@ class ArticleResource extends Resource
                     ->required(),
                 Forms\Components\FileUpload::make('image')
                     ->label('Gambar')
-                    ->directory('images')
-                    ->visibility('public')
                     ->image()
-                    ->nullable(),
+                    ->nullable()
+                    ->saveUploadedFileUsing(function ($file) {
+                        $supabase = new SupabaseStorage();
+                        return $supabase->uploadImage($file, 'posts');
+                    }),
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug')
                     ->disabled(),
