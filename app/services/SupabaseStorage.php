@@ -25,13 +25,15 @@ class SupabaseStorage
         $fileName = time() . '-' . $file->getClientOriginalName();
         $filePath = $path . '/' . $fileName;
 
-        $response = $this->client->request('POST', "{$this->url}/storage/v1/object/{$this->bucket}/{$filePath}", [
+        $response = $this->client->request('POST', "{$this->url}/storage/v1/upload/resumable/{$this->bucket}/{$filePath}", [
+
             'headers' => [
-                'Authorization' => "Bearer {$this->key}",
-                'Content-Type'  => $file->getMimeType(),
-                'x-upsert'      => 'true',
-            ],
-            'body' => fopen($file->getPathname(), 'r'),
+        'apikey'        => $this->key,
+        'Authorization' => "Bearer {$this->key}",
+        'Content-Type'  => 'application/octet-stream',
+        'x-upsert'      => 'true',
+    ],
+    'body' => fopen($file->getPathname(), 'r'),
         ]);
 
         if ($response->getStatusCode() === 200) {
