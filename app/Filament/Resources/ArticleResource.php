@@ -39,6 +39,7 @@ class ArticleResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->label('Gambar')
                     ->image()
+                    ->disk('public')
                     ->nullable(),
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug')
