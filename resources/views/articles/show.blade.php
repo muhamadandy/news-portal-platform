@@ -12,7 +12,7 @@
                         <span class="mx-1">|</span>
                         <span class="text-gray-800 font-semibold">{{ $article->category->name }}</span>
                     </div>
-                    <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}" class="w-full h-auto object-cover rounded-lg shadow-md">
+                    <img src="{{ Storage::disk('cloudinary')->url($article->image) }}" alt="{{ $article->title }}" class="w-full h-auto object-cover rounded-lg shadow-md">
                     <div class="prose max-w-none text-gray-800 mb-6">
                         {!! $article->content !!}
                     </div>

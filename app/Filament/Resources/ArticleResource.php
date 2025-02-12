@@ -72,7 +72,8 @@ class ArticleResource extends Resource
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Gambar')
-                    ->sortable(),
+                    ->sortable()
+                    ->disk('cloudinary'),
                 Tables\Columns\IconColumn::make('is_highlighted')
                     ->label('Highlighted')
                     ->boolean(),
