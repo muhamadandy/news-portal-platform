@@ -35,7 +35,11 @@ class ArticleResource extends Resource
                     ->required(),
                 Forms\Components\RichEditor::make('content')
                     ->label('Konten')
-                    ->required(),
+                    ->required()
+                    ->fileAttachmentsDisk('cloudinary') // Gunakan disk cloudinary
+                    ->fileAttachmentsVisibility('public')
+                    ->fileAttachmentsDirectory('articles') // Folder virtual di Cloudinary
+                    ->fileAttachmentsMaxSize(1024 * 10), // Maksimum 10MB
                 Forms\Components\FileUpload::make('image')
                     ->label('Gambar')
                     ->image()
