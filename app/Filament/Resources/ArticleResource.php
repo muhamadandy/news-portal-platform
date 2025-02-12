@@ -39,7 +39,9 @@ class ArticleResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->label('Gambar')
                     ->image()
-                    ->disk('public')
+                    ->disk('cloudinary') // Menggunakan Cloudinary sebagai disk penyimpanan
+                    ->directory('articles') // Simpan di folder "articles" di Cloudinary
+                    ->getUploadedFileNameForStorageUsing(fn ($file) => (string) str()->uuid().'.'.$file->getClientOriginalExtension()) // Nama file unik
                     ->nullable(),
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug')
