@@ -36,13 +36,13 @@ class ArticleResource extends Resource
                 Forms\Components\RichEditor::make('content')
                     ->label('Konten')
                     ->required()
-                    ->fileAttachmentsDisk('cloudinary')
+                    ->fileAttachmentsDisk('cloudinary') // Simpan file ke Cloudinary
                     ->fileAttachmentsVisibility('public')
-                    ->fileAttachmentsDirectory('articles')
-                    ->fileAttachmentsMaxSize(1024 * 10)
+                    ->fileAttachmentsDirectory('articles') // Folder virtual di Cloudinary
+                    ->fileAttachmentsMaxSize(1024 * 10) // Maksimum 10MB
                     ->fileAttachmentsHandler(function ($file) {
-                        $uploadedFile = $file->storeOnCloudinary('articles'); // Simpan ke Cloudinary
-                        return $uploadedFile->getSecurePath(); // Kembalikan URL gambar
+                        $uploadedFile = $file->storeOnCloudinary('articles'); // Simpan di Cloudinary
+                        return $uploadedFile->getSecurePath(); // Kembalikan URL gambar agar bisa digunakan di editor
                     }),
                 Forms\Components\FileUpload::make('image')
                     ->label('Gambar')
