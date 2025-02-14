@@ -2,107 +2,135 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
+
 use App\Models\Article;
 use App\Models\Category;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\ArticleResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\ArticleResource\RelationManagers;
-use App\Services\SupabaseStorage;
 
 class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
     protected static ?string $navigationLabel = 'Berita';
     protected static ?string $modelLabel = 'Berita';
-
     protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->label('Judul')
-                    ->required(),
-                Forms\Components\RichEditor::make('content')
-                    ->label('Konten')
-                    ->required(),
-                Forms\Components\FileUpload::make('image')
-                    ->label('Gambar')
-                    ->image()
-                    ->disk('cloudinary') // Menggunakan Cloudinary sebagai disk penyimpanan
-                    ->directory('articles') // Simpan di folder "articles" di Cloudinary
-                    ->getUploadedFileNameForStorageUsing(fn ($file) => (string) str()->uuid().'.'.$file->getClientOriginalExtension()) // Nama file unik
-                    ->nullable(),
-                Forms\Components\TextInput::make('slug')
-                    ->label('Slug')
-                    ->disabled(),
-                Forms\Components\Select::make('category_id')
-                    ->label('Kategori')
-                    ->options(Category::all()->pluck('name', 'id'))
-                    ->required(),
-                Forms\Components\Toggle::make('is_highlighted')
-                    ->label('Highlight Berita')
-                    ->inline(false)
-                    ->default(false),
-            ]);
+        return $form->schema([
+            TextInput::make('title')
+                ->label('Judul')
+                ->required(),
+
+
+            RichEditor::make('content')
+                ->label('Konten')
+                ->required()
+                ->toolbarButtons([
+                    'blockquote',
+                    'bold',
+                    'bulletList',
+                    'codeBlock',
+                    'h2',
+                    'h3',
+                    'italic',
+                    'link',
+                    'orderedList',
+                    'redo',
+                    'strike',
+                    'underline',
+                    'undo',
+                ]),
+
+            FileUpload::make('image')
+                ->label('Gambar')
+                ->image()
+                ->disk('cloudinary')
+                ->directory('articles')
+                ->getUploadedFileNameForStorageUsing(fn ($file) => (string) str()->uuid() . '.' . $file->getClientOriginalExtension())
+                ->nullable(),
+
+
+
+            TextInput::make('slug')
+                ->label('Slug')
+                ->disabled(),
+
+            Select::make('category_id')
+                ->label('Kategori')
+                ->options(Category::pluck('name', 'id'))
+                ->required(),
+
+            Toggle::make('is_highlighted')
+                ->label('Highlight Berita')
+                ->inline(false)
+                ->default(false),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
-        return $table
-            ->columns([
+        return $table->columns([
+            TextColumn::make('title')
+                ->label('Judul')
+                ->sortable()
+                ->searchable(),
 
-                Tables\Columns\TextColumn::make('title')
-                    ->label('Judul')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('category.name')
-                    ->label('Kategori')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image')
-                    ->label('Gambar')
-                    ->sortable()
-                    ->disk('cloudinary'),
-                Tables\Columns\IconColumn::make('is_highlighted')
-                    ->label('Highlighted')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Di Buat')
-                    ->dateTime()
-                    ->sortable(),
-            ])
-            ->filters([
-                Tables\Filters\Filter::make('is_highlighted')
-                    ->label('Highlight Only')
-                    ->query(fn (Builder $query) => $query->where('is_highlighted', true)),
-            ])
-            ->actions([
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            TextColumn::make('category.name')
+                ->label('Kategori')
+                ->sortable()
+                ->searchable(),
+
+            ImageColumn::make('image')
+                ->label('Gambar')
+                ->sortable()
+                ->disk('cloudinary'),
+
+            IconColumn::make('is_highlighted')
+                ->label('Highlighted')
+                ->boolean(),
+
+            TextColumn::make('created_at')
+                ->label('Dibuat')
+                ->dateTime()
+                ->sortable(),
+        ])
+        ->filters([
+            Filter::make('is_highlighted')
+                ->label('Highlight Only')
+                ->query(fn (Builder $query) => $query->where('is_highlighted', true)),
+        ])
+        ->actions([
+            DeleteAction::make(),
+            EditAction::make(),
+        ])
+        ->bulkActions([
+            BulkActionGroup::make([
+                DeleteBulkAction::make(),
+            ]),
+        ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

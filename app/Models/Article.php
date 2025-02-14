@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -37,6 +38,7 @@ class Article extends Model
 {
     return $this->hasMany(Comment::class);
 }
+
 
 
     // Jika diperlukan, dapat juga menambahkan method untuk membuat slug secara otomatis
