@@ -32,25 +32,27 @@ Pastikan kamu sudah menginstall:
 
 ```bash
 git clone https://github.com/muhamadandy/news-portal-platform.git
+
+```bash
 cd news-portal-platform
 
 # Install dependency backend
+```bash
 composer install
 
 # Install dependency frontend
+```bash
 npm install
 
+```bash
 cp .env.example .env
 
+```bash
 php artisan key:generate
 
-### Konfigurasi `.env`
-```md
 ## ⚙️ Konfigurasi Environment
 
-Edit file `.env`:
-
-```env
+```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -59,8 +61,6 @@ DB_USERNAME=root
 DB_PASSWORD=
 
 
-### Jalankan Aplikasi
-```md
 ## ▶️ Menjalankan Aplikasi
 
 ```bash
