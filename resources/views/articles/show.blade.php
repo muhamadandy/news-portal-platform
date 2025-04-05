@@ -115,8 +115,8 @@
                     <div class="space-y-6">
                         @foreach ($relatedArticles as $relatedArticle)
                             <a href="{{ route('articles.show', $relatedArticle->slug) }}" class="block">
-                                <img src="{{ $relatedArticle->image ? asset('storage/' . $relatedArticle->image) : asset('images/default-image.jpg') }}"
-                                    alt="{{ $relatedArticle->title }}" class="w-full h-48 object-cover rounded-lg mb-3">
+                                <img src="{{ $relatedArticle->image ? Storage::disk('cloudinary')->url($relatedArticle->image) : asset('images/default-image.jpg') }}"
+                        alt="{{ $relatedArticle->title }}" class="w-full h-48 object-cover rounded-lg mb-3">
                                 <h3 class="text-lg font-semibold text-gray-800">{{ $relatedArticle->title }}</h3>
                                 <p class="text-sm text-gray-500">
                                     {{ $relatedArticle->created_at->format('d M Y') }} |
