@@ -3,6 +3,13 @@
 ![Laravel](https://img.shields.io/badge/Laravel-Framework-red)
 ![License](https://img.shields.io/github/license/muhamadandy/news-portal-platform)
 
+Akses aplikasi di browser:  
+🌐 news-portal-platform-production.up.railway.app
+
+admin user: email: demo@gmail.com & password: demo1234
+user biasa :john@gmail.com & password:john1234
+
+
 News Portal Platform adalah aplikasi web portal berita yang dibangun menggunakan **Laravel** dan **Tailwind CSS**. Aplikasi ini memungkinkan admin mengelola berita, kategori, dan konten lainnya secara efisien.
 
 ---
@@ -91,8 +98,4 @@ Jalankan frontend (Vite):
 Jalankan backend (Laravel):
 
 <pre><code>php artisan serve</code></pre>
-
-Akses aplikasi di browser:  
-🌐 [http://localhost:8000](http://localhost:8000)
-
 ---
