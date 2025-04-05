@@ -32,8 +32,7 @@ Pastikan kamu sudah menginstall:
 
 Clone repository:
 
-```bash
-git clone https://github.com/muhamadandy/news-portal-platform.git
+<pre><code>git clone https://github.com/muhamadandy/news-portal-platform.git</code></pre>
 
 cd news-portal-platform
 
