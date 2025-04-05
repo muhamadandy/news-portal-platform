@@ -3,7 +3,7 @@
 ![Laravel](https://img.shields.io/badge/Laravel-Framework-red)
 ![License](https://img.shields.io/github/license/muhamadandy/news-portal-platform)
 
-Akses aplikasi di browser:  
+## Akses aplikasi di browser:  
 🌐 https://news-portal-platform-production.up.railway.app/
 
 login sebagai admin endpoint: /admin/login
