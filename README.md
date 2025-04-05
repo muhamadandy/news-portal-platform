@@ -96,7 +96,3 @@ Akses aplikasi di browser:
 🌐 [http://localhost:8000](http://localhost:8000)
 
 ---
-
-## 📄 Lisensi
-
-Proyek ini menggunakan lisensi [MIT](LICENSE).
