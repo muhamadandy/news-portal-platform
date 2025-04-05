@@ -34,5 +34,4 @@ Clone repository:
 
 <pre><code>git clone https://github.com/muhamadandy/news-portal-platform.git</code></pre>
 
-cd news-portal-platform
-
+<pre><code>cd news-portal-platform</code></pre>
