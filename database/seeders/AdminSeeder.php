@@ -21,5 +21,14 @@ class AdminSeeder extends Seeder
                 'usertype' => 'admin', // Pastikan ada kolom role di tabel users
             ]
         );
+
+        User::updateOrCreate(
+            ['email' => 'john@gmail.com'],
+            [
+                'name' => 'John Doe',
+                'password' => Hash::make('john1234'),
+                'usertype' => 'user',
+            ]
+        );
     }
 }
