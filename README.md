@@ -34,4 +34,69 @@ Clone repository:
 
 <pre><code>git clone https://github.com/muhamadandy/news-portal-platform.git</code></pre>
 
+Masuk ke folder project:
+
 <pre><code>cd news-portal-platform</code></pre>
+
+Install dependency backend:
+
+<pre><code>composer install</code></pre>
+
+Install dependency frontend:
+
+<pre><code>npm install</code></pre>
+
+Salin file konfigurasi environment:
+
+<pre><code>cp .env.example .env</code></pre>
+
+Generate application key:
+
+<pre><code>php artisan key:generate</code></pre>
+
+---
+
+## ⚙️ Konfigurasi Environment
+
+Edit file `.env` dan sesuaikan konfigurasi database kamu:
+
+<pre><code>DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=root
+DB_PASSWORD=
+</code></pre>
+
+---
+
+## 🌱 Migrasi & Seeder
+
+Jalankan migrasi database:
+
+<pre><code>php artisan migrate</code></pre>
+
+(Opsional) Isi database dengan data dummy:
+
+<pre><code>php artisan db:seed</code></pre>
+
+---
+
+## ▶️ Menjalankan Aplikasi
+
+Jalankan frontend (Vite):
+
+<pre><code>npm run dev</code></pre>
+
+Jalankan backend (Laravel):
+
+<pre><code>php artisan serve</code></pre>
+
+Akses aplikasi di browser:  
+🌐 [http://localhost:8000](http://localhost:8000)
+
+---
+
+## 📄 Lisensi
+
+Proyek ini menggunakan lisensi [MIT](LICENSE).
