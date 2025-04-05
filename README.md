@@ -6,8 +6,15 @@
 Akses aplikasi di browser:  
 🌐 https://news-portal-platform-production.up.railway.app/
 
-admin user: email: demo@gmail.com & password: demo1234
-user biasa :john@gmail.com & password:john1234
+login sebagai admin endpoint: /admin/login
+admin user: 
+email: demo@gmail.com 
+password: demo1234
+
+login sebagai user biasa endpoint: /login
+user biasa :
+email: john@gmail.com & 
+password: john1234
 
 
 News Portal Platform adalah aplikasi web portal berita yang dibangun menggunakan **Laravel** dan **Tailwind CSS**. Aplikasi ini memungkinkan admin mengelola berita, kategori, dan konten lainnya secara efisien.
