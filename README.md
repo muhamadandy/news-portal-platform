@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/github/license/muhamadandy/news-portal-platform)
 
 Akses aplikasi di browser:  
-🌐 news-portal-platform-production.up.railway.app
+🌐 https://news-portal-platform-production.up.railway.app/
 
 admin user: email: demo@gmail.com & password: demo1234
 user biasa :john@gmail.com & password:john1234
